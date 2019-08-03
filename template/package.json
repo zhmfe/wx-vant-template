@@ -26,7 +26,17 @@
   },
   "dependencies": {
     "vue": "^2.5.2"{{#router}},
-    "vue-router": "^3.0.1"{{/router}}
+    "vue-router": "^3.0.1"{{/router}},
+    "async-validator": "^1.11.3"{{/router}},
+    "axios": "^0.19.0"{{/router}},
+    "babel-polyfill": "^6.26.0"{{/router}},
+    "es6-promise": "^4.2.8"{{/router}},
+    "style-loader": "^0.23.1"{{/router}},
+    "stylus": "^0.54.5"{{/router}},
+    "stylus-loader": "^3.0.2"{{/router}},
+    "vant": "^2.0.6"{{/router}},
+    "vconsole": "^3.3.2"{{/router}},
+    "weixin-js-sdk": "^1.4.0-test"{{/router}}
   },
   "devDependencies": {
     {{#lint}}
