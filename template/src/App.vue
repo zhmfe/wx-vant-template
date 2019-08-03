@@ -33,12 +33,12 @@
             if(isDebug){
                 new VConsole();
             }
-            this.getSharingInfo();
-            this.setUrl();
-            this.refine();
-            this.getWxAuth();
-            this.getConfig();
-            this.wxReady();
+            // this.getSharingInfo();
+            // this.setUrl();
+            // this.refine();
+            // this.getWxAuth();
+            // this.getConfig();
+            // this.wxReady();
         },
         methods: {
             setUrl() {
