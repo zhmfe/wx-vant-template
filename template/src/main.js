@@ -8,25 +8,7 @@ import App from './App'
 import router from './router'
 {{/router}}
 
-import api from './api/index.js';
-import urls from './api/urls';
-import "./utils/rem";
-import 'babel-polyfill'
-import Es6Promise from 'es6-promise'
-
-Es6Promise.polyfill();
-import base from './utils/base.js';
-// import "vant/lib/index.css";
-import Vant, {Lazyload, Notify, Toast} from "vant";
-
-Vue.use(api);
-Vue.use(urls);
-Vue.use(base);
-Vue.use(Vant);
-Vue.use(Toast);
-Vue.use(Notify);
-Vue.use(Lazyload);
-
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
