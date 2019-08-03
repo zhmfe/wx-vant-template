@@ -2,11 +2,11 @@
     <div class="Footer" v-if="showFooter">
         <van-tabbar v-model="active" active-color="#3E7FFA">
             <van-tabbar-item @click="go('index')">
-                <span>预约体验</span>
+                <span>首页</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? home.active : home.normal">
             </van-tabbar-item>
             <van-tabbar-item  @click="go('personal')">
-                <span>我的预约</span>
+                <span>我的</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? my.active : my.normal">
             </van-tabbar-item>
         </van-tabbar>
