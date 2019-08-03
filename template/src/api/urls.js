@@ -1,6 +1,8 @@
 const baseUrl = process.env.API_PREFIX;
 const urls = {
- 
+    getShareInfo:``,
+    getWXConfig:``,
+    getOpenId:``
 };
 
 export default {

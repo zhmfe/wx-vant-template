@@ -5,10 +5,11 @@
 </template>
 
 <script>
+    import {getUrlQuery} from "./utils/util";
     import wx from 'weixin-js-sdk';
     import VConsole from 'vconsole';
     import paramsMixin from "./common/paramsMixin";
-    import {baseUrl,isDebug} from "./config";
+    import {baseUrl,isDebug,appId} from "./config";
     import {getStore, setStore, removeStore} from "./utils/storage";
 
     export default {
@@ -16,7 +17,7 @@
         mixins: [paramsMixin],
         data() {
             return {
-                meetingId: "",
+                id: "",
                 url: '',
                 sharingTitle: "",
                 sharingDesc: "",
@@ -35,6 +36,7 @@
             this.getSharingInfo();
             this.setUrl();
             this.refine();
+            this.getWxAuth();
             this.getConfig();
             this.wxReady();
         },
@@ -43,8 +45,8 @@
                 this.url = window.location.href;
             },
             getSharingInfo(cb) {
-                let meetingId = getStore('meetingId');
-                this.$api.post(this.$urls.getShareInfo, {meetingId}).then(res => {
+                let id = getStore('id');
+                this.$api.post(this.$urls.getShareInfo, {id}).then(res => {
                     document.title = res.data.theme;
                     this.sharingTitle = res.data.theme;
                     this.sharingDesc = res.data.meetingTime;
@@ -55,8 +57,8 @@
                 });
             },
             getShareUrl() {
-                let meetingId = getStore('meetingId');
-                return `${baseUrl}/index?meetingId=${meetingId}`;
+                let id = getStore('id');
+                return `${baseUrl}/index?id=${id}`;
             },
             getAddress() {
                 console.log("执行getAddress")
@@ -143,6 +145,27 @@
 
                 })
 
+            },
+            getWxAuth() {
+                if (getStore('wx_openid')) {
+                    return
+                }
+                this.code = getUrlQuery('code');
+                if (this.code) {
+                    this.getOpenId(this.code);
+                } else {
+                    if (!isDebug) {
+                        window.location.href =
+                            `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appId}&redirect_uri=${encodeURIComponent(this.url)}&response_type=code&scope=snsapi_base`;
+                    }
+                }
+            },
+             getOpenId(code) {
+                this.$api.post(this.$urls.getOpenId, {code}).then(res => {
+                    this.openid = res.openid
+                    setStore('wx_openid', this.openid);
+                    location.href = this.url;
+                })
             },
             refine() {
                 window.alert = function (name) {
