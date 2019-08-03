@@ -35,8 +35,8 @@
     "vant": "^2.0.6",
     "vconsole": "^3.3.2",
     "weixin-js-sdk": "^1.4.0-test",
-    "vue": "^2.5.2"{{#router}},
-    "vue-router": "^3.0.1", {{/router}}
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     {{#lint}}
